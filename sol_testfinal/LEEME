@@ -1,0 +1,55 @@
+
+Hola Albino.
+
+Hay dos tablas con las equivalencias de nombres.
+Una para los ficheros de verificación y otra para clasificación:
+
+class.tbl
+verif.tbl
+
+
+$ head -3 *tbl
+==> class.tbl <==
+SA102S30      c0000
+SA157S27      c0001
+SA088S05      c0002
+
+==> verif.tbl <==
+SA146S28      v0000
+SA195S15      v0001
+SA240S09      v0002
+
+
+
+Hay un script (code2file.pl) que dados los ficheros .log, con resultados de clasificación/verif.,
+analiza código de primera columna y añade una columna con nombre fichero.
+
+
+Por ejemplo, para clasificación:
+
+$ head -3 spk_class.log
+spk_rec/c00/c0054	SES086
+spk_rec/c01/c0148	SES161
+spk_rec/c02/c0257	SES204
+
+$ ./code2file.pl class.tbl spk_class.log | head -3
+SA086S25	spk_rec/c00/c0054	SES086
+SA161S06	spk_rec/c01/c0148	SES161
+SA204S30	spk_rec/c02/c0257	SES204
+
+$ ./code2file.pl class.tbl spk_class.log | cut -f 1,3 | head -3
+SA086S25	SES086
+SA161S06	SES161
+SA204S30	SES204
+
+
+Con esto ya se pueden contar los errores.
+Lo mismo para verificación.
+
+
+Con las tablas no creo que lo necesites, pero incluyo el script que usé 
+para renombrar ficheros, 
+
+do_copy_hide.sh
+
+Saludos,
