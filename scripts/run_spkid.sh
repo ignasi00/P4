@@ -36,7 +36,7 @@ if [[ $# < 1 ]]; then
    echo "  classerr: count errors in speaker recognition"
    echo "trainworld: estimate world model for speaker verification"
    echo "    verify: test gmm in verification task"
-   echo " verifyerr: count errors of verify"
+   echo "  veriferr: count errors of verify"
    echo "finalclass: reserved for final test in the classification task"
    echo "finalverif: reserved for final test in the verification task"
    exit 1
@@ -87,9 +87,9 @@ compute_lp() {
 
 
 #  Set the name of the feature (not needed for feature extraction itself)
-if [[ ! -v FEAT && $# > 0 && "$(type -t compute_$1)" = function ]]; then
+if [[ ! -n "$FEAT" && $# > 0 && "$(type -t compute_$1)" = function ]]; then
 	FEAT=$1
-elif [[ ! -v FEAT ]]; then
+elif [[ ! -n "$FEAT" ]]; then
 	echo "Variable FEAT not set. Please rerun with FEAT set to the desired feature."
 	echo
 	echo "For instance:"
@@ -118,7 +118,6 @@ for cmd in $*; do
            echo
        done
    elif [[ $cmd == test ]]; then
-       find $w/gmm/$FEAT -name '*.gmm' -printf '%P\n' | perl -pe 's/.gmm$//' | sort  > $lists/gmm.list
        (gmm_classify -d $w/$FEAT -e $FEAT -D $w/gmm/$FEAT -E gmm $lists/gmm.list  $lists/class/all.test | tee $w/class_${FEAT}_${name_exp}.log) || exit 1
 
    elif [[ $cmd == classerr ]]; then
@@ -150,14 +149,14 @@ for cmd in $*; do
 	   #   * <code> gmm_verify ... | tee $w/verif_${FEAT}_${name_exp}.log </code>
        echo "Implement the verify option ..."
 
-   elif [[ $cmd == verif_err ]]; then
+   elif [[ $cmd == veriferr ]]; then
        if [[ ! -s $w/verif_${FEAT}_${name_exp}.log ]] ; then
           echo "ERROR: $w/verif_${FEAT}_${name_exp}.log not created"
           exit 1
        fi
        # You can pass the threshold to spk_verif_score.pl or it computes the
        # best one for these particular results.
-       spk_verif_score.pl $w/verif_${FEAT}_${name_exp}.log | tee $w/verif_${FEAT}_${name_exp}.res
+       spk_verif_score $w/verif_${FEAT}_${name_exp}.log | tee $w/verif_${FEAT}_${name_exp}.res
 
    elif [[ $cmd == finalclass ]]; then
        ## @file

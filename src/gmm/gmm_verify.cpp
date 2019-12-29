@@ -37,6 +37,7 @@ float verify(const GMM &gmm_candidate, const GMM & gmm_world, const fmatrix &dat
 
   /// \TODO
   /// Implement verification score based on the gmm of the candidate and the 'world' model.
+
   float score = 0.0F;
   lprobcand = 0.0F;
   lprobbackground = 0.0F;

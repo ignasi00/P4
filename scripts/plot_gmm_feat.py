@@ -1,4 +1,4 @@
-#! /usr/bin/python3 -u
+#! /usr/bin/env python3
 
 import struct
 
@@ -156,8 +156,8 @@ Usage:
     plotGMM [--help|-h] [options] <file-gmm> [<file-feat>...]
 
 Options:
-    --yDim INT, -x INT               'x' dimension to use from GMM and feature vectors [default: 0]
-    --xDim INT, -y INT               'y' dimension to use from GMM and feature vectors [default: 1]
+    --xDim INT, -x INT               'x' dimension to use from GMM and feature vectors [default: 0]
+    --yDim INT, -y INT               'y' dimension to use from GMM and feature vectors [default: 1]
     --percents FLOAT..., -p FLOAT...  Percentages covered by the regions [default: 90,50]
     --colorGMM STR, -g STR            Color of the GMM regions boundaries [default: red]
     --colorFEAT STR, -f STR           Color of the feature population [default: red]
@@ -181,7 +181,7 @@ if __name__ == '__main__':
     colorFeat = args['--colorFEAT']
     limits = args['--limits']
     if limits != 'auto':
-        limits = [int(limit) for limit in limits.split(',')]
+        limits = [float(limit) for limit in limits.split(',')]
         if len(limits) is not 4:
             print('ERROR: xyLimits must be four comma-separated values')
             exit(1)

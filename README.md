@@ -7,11 +7,12 @@ instrucciones de la [Práctica 3](https://github.com/albino-pav/P3) para crear u
 los integrantes del grupo de prácticas, dar de alta al resto de integrantes como colaboradores del proyecto
 y crear la copias locales del repositorio.
 
-También debe descomprimir, en el directorio `PAV/P4`, el fichero [db_spk.tgz](https://atenea.upc.edu/pluginfile.php/3008277/mod_assign/introattachment/0/db_spk.tgz?forcedownload=1)
+También debe descomprimir, en el directorio `PAV/P4`, el fichero
+[db_spk.tgz](https://atenea.upc.edu/pluginfile.php/3008277/mod_assign/introattachment/0/db_spk.tgz)
 con la base de datos oral que se utilizará en la parte experimental de la práctica.
 
-Como entrega deberá realizar un *pull request* con el contenido de su copia del repositorio. Recuerde
-que los ficheros entregados deberán estar en condiciones de ser ejecutados con sólo ejecutar:
+Como entrega deberá realizar un *pull request* con el contenido de su copia del repositorio. Recuerde que
+los ficheros entregados deberán estar en condiciones de ser ejecutados con sólo ejecutar:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
   make release
@@ -31,8 +32,8 @@ ejercicios indicados.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
 # A modo de ejemplo de cómo incorporar código fuente a un fichero markdown, el pipeline siguiente
 # es el usado para calcular los coeficientes de predicción lineal (LP) en el script wav2lp.sh:
-sox $inputfile -t raw - | $X2X +sf | $FRAME -l 400 -p 80 | $WINDOW -l 400 -L 400 |
-        $LPC -l 400 -m $lpc_order > $base.lp
+sox $inputfile -t raw - | $X2X +sf | $FRAME -l 200 -p 40 | $WINDOW -l 200 -L 200 |
+        $LPC -l 200 -m $lpc_order > $base.lp
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales en escala Mel (MFCC), en

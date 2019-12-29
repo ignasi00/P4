@@ -1,8 +1,8 @@
 # PREFIX overrides the 'prefix' option of Meson's function project() on 'ninja install'.
 PREFIX = ${HOME}/PAV
 
-BUILD_RELEASE = bin/release
-BUILD_DEBUG   = bin/debug
+BUILD_RELEASE = build/release
+BUILD_DEBUG   = build/debug
 FILE_RELEASE  = ${BUILD_RELEASE}/build.ninja
 FILE_DEBUG    = ${BUILD_DEBUG}/build.ninja
 
